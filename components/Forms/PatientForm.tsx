@@ -4,9 +4,11 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 
-import { Button } from "@/components/ui/button"
+
 import { Form} from "@/components/ui/form"
 import CustomFormField from "./CustomFormField"
+import SubmitButton from "../ui/SubmitButton"
+import { useState } from "react"
 
 export enum formFieldType {
     INPUT = 'input', 
@@ -26,6 +28,7 @@ const formSchema = z.object({
 })
 
 const PatientForm = () => {
+  const[Loading , setLoading] = useState(false)
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -50,12 +53,30 @@ const PatientForm = () => {
          fieldType={formFieldType.INPUT}
          control={form.control}
          name="name"
-         label="full name"
+         label="Full Name"
          placeholder="jhon doe"
-         iconSrc="../assets/logo/Logo.svg"
+         iconSrc="/assets/logo/user.png"
          iconAlt="user"
          />
-      <Button type="submit">Submit</Button>
+           <CustomFormField 
+         fieldType={formFieldType.INPUT}
+         control={form.control}
+         name="email"
+         label="Email"
+         placeholder="jhondoe@jmastery.pro"
+         iconSrc="/assets/logo/email.png"
+         iconAlt="email"
+         />
+          <CustomFormField 
+         fieldType={formFieldType.PHONE_INPUT}
+         control={form.control}
+         name="phone number"
+         label="Phone Number"
+         placeholder="+000342045334"
+         iconSrc="/assets/logo/Lead icon.png"
+         iconAlt="phone_num"
+         />
+       <SubmitButton isloading={Loading} >Get Started</SubmitButton>
     </form>
   </Form>
   )
