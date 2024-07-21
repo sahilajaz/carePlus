@@ -11,6 +11,7 @@ import SubmitButton from "../ui/SubmitButton"
 import { useState } from "react"
 import { userFormValidation } from "@/lib/validation"
 import { useRouter } from 'next/navigation' 
+import { createUser } from "@/lib/action/patient.action"
 
 export enum formFieldType {
     INPUT = 'input', 
@@ -31,19 +32,19 @@ const PatientForm = () => {
     resolver: zodResolver(userFormValidation),
     defaultValues: {
       name: "",
-      email:" ",
-      phone: " ",
+      email:"",
+      phone: "",
     },
   })
 
   
   const onSubmit = async ({name , email , phone}: z.infer<typeof userFormValidation>) => {
     setLoading(true)
-
+     console.log(name , email , phone)
     try{
-      //  const userData = {name , email , phone}
-      //  const user = await createUser(userData)
-      //  if(user) router.push(`/patients/${user.$id}/register`)
+       const userData = {name , email , phone}
+       const user = await createUser(userData)
+       if(user) router.push(`/patients/${user.$id}/register`)
     }
     catch(error) {
       console.log(error)
@@ -71,7 +72,7 @@ const PatientForm = () => {
          control={form.control}
          name="email"
          label="Email"
-         placeholder="jhondoe@jmastery.pro"
+         placeholder="jhondoe@jmastery"
          iconSrc="/assets/logo/email.png"
          iconAlt="email"
          />
