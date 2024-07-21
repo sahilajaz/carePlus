@@ -47,8 +47,6 @@ const PatientForm = () => {
         phone: values.phone
       }
 
-      console.log(user)
-
       const newUser = await createUser(user)
 
       if (newUser) {

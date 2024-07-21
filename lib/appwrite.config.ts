@@ -1,8 +1,8 @@
-import * as sdk from 'node-appwrite'
+import * as sdk from 'node-appwrite';
 
-export const {
-    PROJECT_ID , 
-    API_KEY , 
+const {
+    PROJECT_ID, 
+    API_KEY, 
     DATABASE_ID,
     PATIENT_COLLECTION_ID,
     DOCTOR_COLLECTION_ID,
@@ -18,7 +18,9 @@ client.setEndpoint(ENDPOINT!)
        .setProject(PROJECT_ID!)
        .setKey(API_KEY!)
 
-    export const dataBase = new sdk.Databases(client)
-    export const storage = new sdk.Storage(client)
-    export const messaging = new sdk.Messaging(client)
-    export const users = new sdk.Users(client)
+console.log('BUCKET_ID :', BUCKET_ID)
+
+export const dataBase = new sdk.Databases(client)
+export const storage = new sdk.Storage(client)
+export const messaging = new sdk.Messaging(client)
+export const users = new sdk.Users(client)
